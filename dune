@@ -8,14 +8,17 @@
 (melange.emit
  (target build)
  (alias ghostty)
+ (emit_stdlib true)
  (libraries app)
+ (promote (until-clean))
  (module_systems es6))
 
 (rule
  (alias tailwind)
  (deps
   (:in ./tailwind.css)
-  (:config ./tailwind.config.js))
+  (:config ./tailwind.config.js)
+  (:index_html ./index.html))
  (targets styles.css)
  (action
   (run npx tailwindcss -c %{config} -i %{in} -o ./styles.css))

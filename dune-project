@@ -33,6 +33,7 @@
    (>= 3.11))
   (melange
    (>= 2.1.0))
+  opam-check-npm-deps
   (reason
    (>= 3.10.0))
   (reason-react

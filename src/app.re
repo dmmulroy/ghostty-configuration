@@ -1,6 +1,18 @@
+// TODO: Fix tailwind config content to pickup source files correctly
 module App = {
   [@react.component]
-  let make = () => <h1> {React.string("Hello, world")} </h1>;
+  let make = () => {
+    <div className="dark h-full w-full">
+      <div
+        className="h-full w-full flex flex-col items-center dark:bg-slate-900 dark:text-slate-400 space-y-4">
+        <Card className="w-2/3">
+          <Typography elt=Typography.H1>
+            {React.string("Hello, world!")}
+          </Typography>
+        </Card>
+      </div>
+    </div>;
+  };
 };
 
 ReactDOM.querySelector("#root")

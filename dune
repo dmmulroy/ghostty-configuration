@@ -1,2 +1,41 @@
 (dirs :standard \ node_modules)
 
+(alias
+ (name all)
+ (deps
+  (alias_rec vite)))
+
+(melange.emit
+ (target build)
+ (alias ghostty)
+ (libraries app)
+ (module_systems es6))
+
+(rule
+ (alias tailwind)
+ (deps
+  (:in ./tailwind.css)
+  (:config ./tailwind.config.js))
+ (targets styles.css)
+ (action
+  (run npx tailwindcss -c %{config} -i %{in} -o ./styles.css))
+ (mode
+  (promote
+   (until-clean)
+   (into ./public))))
+
+(rule
+ (alias vite)
+ (deps
+  (alias_rec ghostty)
+  (alias_rec tailwind)
+  (:vite_config ./vite.config.js)
+  (:pkg_json ./package.json)
+  (:index_html ./index.html))
+ (targets
+  (dir dist))
+ (action
+  (run bun run vite-build))
+ (mode
+  (promote (until-clean))))
+

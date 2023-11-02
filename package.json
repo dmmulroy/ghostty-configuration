@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "bun run build && vite _build/default",
+    "build": "dune build",
+    "vite-build": "vite build",
     "preview": "vite preview"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Dillon Mulroy <dillon.mulroy@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react-dom": "^17.0.0",
+    "tailwindcss": "^3.3.5"
   },
   "devDependencies": {
     "vite": "^4.5.0"

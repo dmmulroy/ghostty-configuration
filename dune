@@ -18,7 +18,8 @@
  (deps
   (:in ./tailwind.css)
   (:config ./tailwind.config.js)
-  (:index_html ./index.html))
+  (:index_html ./index.html)
+  (source_tree ./src))
  (targets styles.css)
  (action
   (run npx tailwindcss -c %{config} -i %{in} -o ./styles.css))
@@ -41,4 +42,3 @@
   (run bun run vite-build))
  (mode
   (promote (until-clean))))
-

@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "bun run build && concurrently 'npm:vite-dev' 'npm:dune-watch'",
+    "dev": "npm run build && concurrently 'npm:vite-dev' 'npm:dune-watch'",
     "build": "dune build",
     "vite-dev": "vite _build/default",
     "vite-build": "vite build",
     "vite-preview": "vite preview",
-    "dune-watch": "dune build -w"
+    "dune-watch": "dune build @ghostty @tailwind -w",
+    "tailwind": "dune build @tailwind"
   },
   "author": "Dillon Mulroy <dillon.mulroy@gmail.com>",
   "license": "MIT",
@@ -19,6 +20,7 @@
     "tailwindcss": "^3.3.5"
   },
   "devDependencies": {
+    "@catppuccin/tailwindcss": "^0.1.6",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "concurrently": "^8.2.2",
     "vite": "^4.5.0"

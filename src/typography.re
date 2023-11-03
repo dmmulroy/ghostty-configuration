@@ -10,7 +10,8 @@ type elt =
 type size =
   | Small
   | Base
-  | Large;
+  | Large
+  | XLarge;
 
 type font_style =
   | Sans
@@ -52,7 +53,8 @@ let classes_of_size =
   fun
   | Small => ["text-xs"]
   | Base => ["text-base"]
-  | Large => ["text-2xl"];
+  | Large => ["text-2xl"]
+  | XLarge => ["text-5xl"];
 
 let classes_of_props = (~font_style, ~font_weight, ~size) =>
   List.flatten([

@@ -2,7 +2,7 @@ let base_classes = [
   "p-6",
   "rounded-xl",
   "bg-white",
-  "dark:bg-slate-800",
+  "dark:bg-surface0",
   "shadow-xl",
   "border",
   "border-slate-200/60",

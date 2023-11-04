@@ -29,41 +29,43 @@ type font_weight =
   | Extra_bold
   | Black;
 
-let base_classes = ["text-slate-600", "dark:text-slate-400"];
-
 let classes_of_font_style =
   fun
-  | Sans => ["font-sans"]
-  | Serif => ["font-serif"]
-  | Mono => ["font-mono"];
+  | Sans => "font-sans"
+  | Serif => "font-serif"
+  | Mono => "font-mono";
 
 let classes_of_font_weight =
   fun
-  | Thin => ["font-thin"]
-  | Extra_light => ["font-extralight"]
-  | Light => ["font-light"]
-  | Normal => ["font-normal"]
-  | Medium => ["font-medium"]
-  | Semi_bold => ["font-semibold"]
-  | Bold => ["font-bold"]
-  | Extra_bold => ["font-extrabold"]
-  | Black => ["font-black"];
+  | Thin => "font-thin"
+  | Extra_light => "font-extralight"
+  | Light => "font-light"
+  | Normal => "font-normal"
+  | Medium => "font-medium"
+  | Semi_bold => "font-semibold"
+  | Bold => "font-bold"
+  | Extra_bold => "font-extrabold"
+  | Black => "font-black";
 
 let classes_of_size =
   fun
-  | Small => ["text-xs"]
-  | Base => ["text-base"]
-  | Large => ["text-2xl"]
-  | XLarge => ["text-5xl"];
+  | Small => "text-xs"
+  | Base => "text-base"
+  | Large => "text-2xl"
+  | XLarge => "text-5xl";
 
-let classes_of_props = (~font_style, ~font_weight, ~size) =>
-  List.flatten([
+let base_classes = "text-text";
+
+let classes_of_props = (~className, ~font_style, ~font_weight, ~size) =>
+  [
     base_classes,
     classes_of_font_style(font_style),
     classes_of_size(size),
     classes_of_font_weight(font_weight),
-  ])
-  |> String.concat(" ");
+    className,
+  ]
+  |> Array.of_list
+  |> Tailwind.merge;
 
 let render_elt = (~elt, ~classes, ~children) =>
   switch (elt) {
@@ -78,10 +80,17 @@ let render_elt = (~elt, ~classes, ~children) =>
 
 [@react.component]
 let make =
-    (~elt=P, ~size=Base, ~font_style=Sans, ~font_weight=Normal, ~children) => {
+    (
+      ~className="",
+      ~elt=P,
+      ~size=Base,
+      ~font_style=Sans,
+      ~font_weight=Normal,
+      ~children,
+    ) => {
   render_elt(
     ~elt,
-    ~classes=classes_of_props(~font_style, ~font_weight, ~size),
+    ~classes=classes_of_props(~className, ~font_style, ~font_weight, ~size),
     ~children,
   );
 };
